@@ -1,4 +1,4 @@
-package com.example.restful_spring;
+package com.restful_spring;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
