@@ -2,24 +2,36 @@ package com.restful_spring.controller.user;
 
 
 import com.restful_spring.common.utils.ApiResponseEntity;
+import com.restful_spring.entity.user.User;
 import com.restful_spring.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService UserService;
 
-    @GetMapping("/user")
-    public ApiResponseEntity<?> User(){
+    @GetMapping("/{name}")
+    public ApiResponseEntity<?> findByUser(@PathVariable String name){
+        User user = UserService.findByUser(name);
+        return ApiResponseEntity.builder().code(HttpStatus.OK).message("200 ok").data(user).build();
+    }
 
-        String User = UserService.User();
-        return ApiResponseEntity.builder().code(HttpStatus.OK).message("200 ok").data(User).build();
+    @GetMapping("/all")
+    public ApiResponseEntity<?> findAllUser(){
+        List<User> user = UserService.findAllUser();
+        return ApiResponseEntity.builder().code(HttpStatus.OK).message("200 ok").data(user).build();
+    }
+
+   @PostMapping
+    public ApiResponseEntity<?> saveUser(@RequestBody User user){
+       UserService.saveUser(user);
+        return ApiResponseEntity.builder().code(HttpStatus.OK).message("200 ok").data("완료").build();
     }
 }

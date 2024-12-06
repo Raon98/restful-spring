@@ -10,10 +10,12 @@ import lombok.Setter;
 @Setter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserEntity {
+@Table(name = "user_info")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
     @Column(nullable = false, length = 30)
@@ -25,5 +27,11 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
-
+    public static User createUser(String name, String email, String password) {
+        User user = new User();
+        user.name = name;
+        user.email = email;
+        user.password = password;
+        return user;
+    }
 }
