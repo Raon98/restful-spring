@@ -2,7 +2,7 @@ package com.restful_spring.controller.user;
 
 
 import com.restful_spring.common.utils.ApiResponseEntity;
-import com.restful_spring.dto.user.response.UserDto;
+import com.restful_spring.dto.user.response.UserRep;
 import com.restful_spring.entity.user.User;
 import com.restful_spring.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class UserController {
 
     @GetMapping("/{name}")
     public ApiResponseEntity<?> findByUser(@PathVariable String name){
-        UserDto user = UserService.findByUser(name);
+        UserRep user = UserService.findByUser(name);
         return ApiResponseEntity.builder().code(HttpStatus.OK).message("200 ok").data(user).build();
     }
 

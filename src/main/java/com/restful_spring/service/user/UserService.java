@@ -1,7 +1,7 @@
 package com.restful_spring.service.user;
 
 
-import com.restful_spring.dto.user.response.UserDto;
+import com.restful_spring.dto.user.response.UserRep;
 import com.restful_spring.entity.user.User;
 import com.restful_spring.repository.user.UserRepository;
 import com.restful_spring.repository.user.querydsl.UserRepositoryImpl;
@@ -23,7 +23,7 @@ public class UserService {
         return userRepository.findAll();
     }
     @Transactional
-    public UserDto findByUser(String name){
+    public UserRep findByUser(String name){
         return userRepositoryImpl.findByName(name);
     }
     @Transactional
